@@ -55,6 +55,11 @@ fi
 
 sed -i '/write-data=/c\write-data=\/factorio/' /opt/factorio/config/config.ini
 
+envsubst < server-settings.json > /$CONFIG/server-settings.json
+envsubst < map-gen-settings.json > /$CONFIG/map-gen-settings.json
+envsubst < map-settings.json > /$CONFIG/map-settings.json
+
+
 NRSAVES=$(find -L "$SAVES" -iname \*.zip -mindepth 1 | wc -l)
 if [[ $GENERATE_NEW_SAVE != true && $NRSAVES ==  0 ]]; then
     GENERATE_NEW_SAVE=true

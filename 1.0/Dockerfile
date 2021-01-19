@@ -17,7 +17,14 @@ ENV PORT=34197 \
     SCENARIOS=/factorio/scenarios \
     SCRIPTOUTPUT=/factorio/script-output \
     PUID="$PUID" \
-    PGID="$PGID"
+    PGID="$PGID" \
+    SERVER_NAME="$SERVER_NAME" \
+    SERVER_DESC="$SERVER_DESCRIPTION" \
+    GAME_PASS="$GAME_PASS" \
+    PUBLIC="$PUBLIC" \
+    RESEARCH_QUEUE="$RESEARCH_QUEUE" \
+    PEACEFUL_MODE="$PEACEFUL_MODE" \
+    SEED="$SEED"
 
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN set -ox pipefail \
@@ -39,6 +46,7 @@ RUN set -ox pipefail \
 
 COPY files/*.sh /
 COPY files/config.ini /opt/factorio/config/config.ini
+COPY files/*.json /
 
 VOLUME /factorio
 EXPOSE $PORT/udp $RCON_PORT/tcp
